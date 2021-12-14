@@ -26,8 +26,14 @@ int main(){
         num2 = num1;
         while(99 < num2){
             temp = num1 * num2;
+
+            //break early if solutions are small
+            if(temp < sol){
+             break;
+            }
+            
             //check palindromic prop
-            if(palindrom(temp) && (sol < temp)){
+            if(palindrom(temp)){
                 sol = temp;
             }
             num2 = num2 - 1;
