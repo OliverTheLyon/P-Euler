@@ -4,14 +4,13 @@
 bool palindrom(int num){
     std::string val = std::to_string(num);
     int size = val.length();
-    bool pali = true;
     
     for(int i = 0; i < size/2; i ++){
         if(val[i] != val[size-i-1]){
-            pali = false;
+            return(false);
         }
     }
-    return(pali);
+    return(true);
 }
 
 
