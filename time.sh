@@ -29,8 +29,8 @@ avg_time_alt() {
 }
 
 #What q's to run
-START_Q=3;
-END_Q=5;
+START_Q=1;
+END_Q=6;
 PERSON="Oliver";
 
 #make files needed
