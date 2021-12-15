@@ -12,5 +12,7 @@ common-lib.o: common-lib.cpp
 common-lib.hppo: common-lib.hpp
 	${CC} -Wall -Wextra common-lib.hpp -o common-lib.hppo
 
+.PHONY:clean
+
 clean:
 	rm common-lib.o common-lib.hppo common-lib.a
