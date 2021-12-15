@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 int main(){
     long int sol = 2;
     long int max = 4000000;
@@ -14,6 +16,6 @@ int main(){
         n2 = n3;
     }
 
-    std::cout<< "Solution: " << sol <<"\n"; 
+    cout<< "Solution: " << sol << endl; 
     return(0);
 }
