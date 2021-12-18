@@ -1,12 +1,12 @@
-CC = gcc 
-CF = -Wall -Wextra -I ../../Com-Lib -c
+CC = g++ 
+CF = -Wall -Wextra  -c -I ../../Com-Lib -g
 LF = -L ../../Com-Lib/ -l:common-lib.a ../../Com-Lib/common-lib.o
-EXE = p3
+RES = a.out
 DOTO = problem3.o
 
 
 all: common-lib.a problem3.o 
-	${CC} ${LF} problem3.o -o p3
+	${CC} ${LF} problem3.o 
 
 problem3.o: problem3.cpp
 	${CC} ${CF} problem3.cpp -o problem3.o
@@ -17,4 +17,4 @@ common-lib.a: ../../Com-Lib/common-lib.cpp
 .PHONY: clean
 
 clean:
-	rm ${EXE} ${DOTO}
+	rm ${RES} ${DOTO}
