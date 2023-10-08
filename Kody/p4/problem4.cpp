@@ -1,64 +1,47 @@
 #include <iostream>
+#include <cmath>
 #include <algorithm>
+#include <tuple>
 #include "common-lib.hpp"
 using namespace std;
 
-float exp(float base, int exponent){
-	if(exponent == 0){
-		return 1;
-	}
-	if(exponent < 0){
-		return (1.0/base) * exp(base, exponent + 1);
-	}
-	return base * exp(base, exponent - 1);
-}
-
-
-bool isPalindrome(long int val){
-	int n = val;
-	long int rev = 0;
-	while(n > 0){
-		int dig = n % 10;
-		rev = rev * 10 + dig;
-		n = n / 10;
-	}
-
-	return rev == val;
-}
-
-
-long double * findPalindrome(int n){
-	long double min = exp(10, n);
-	long double max = 0;
-	long double * res = (long double*)malloc(sizeof(long double) * 3);
-	*res = 0;
-	res[1] = 0;
-	res[2] = 0;
-	for(int i = 0; i <= n; i += 1){
-		max += 9*exp(10,i);
-	}
-
-	for(int i = max; i >= min; i -= 1){
-		for(int j = max -1; j >= min; j += 1){
-			if(j < res[2]){
-				break;
+tuple<int,int,int> palindrome(){
+	int max = 1001;
+	int l = 0; 
+	int r = 0;
+	for(int i=100; i <= 999; i += 1){
+		for(int j=100; j <= i; j += 1){
+			int temp = i * j;
+			int temp2 = temp;
+			int len = log10(temp) + 1;
+			int ar[len];
+			for(int k = 0; k <= len; k += 1){
+				ar[k] = temp2 % 10;
+				temp2 /= 10;
 			}
-			long int prod = i * j;
-			if(isPalindrome(prod) == true && prod > *res){
-				*res = prod;
-				res[1] = i;
-				res[2] = j;
-				break;
+			bool found = false;
+			for(int k = 0; k < len; k += 1){
+				if(ar[k] != ar[(len - 1) - k]){
+					temp = max;
+					found = true;
+					break;
+				}
+			}
+			if(!found && max < temp){
+				l = i;
+				r = j;
+				max =  temp;
 			}
 		}
 	}
-	return res;
+	return {max, l, r};
 }
 
 
+
 int main(){
-	cout.precision(26);
-	long double * soln = findPalindrome(3);
-	cout << "Solution: " << *soln << "=" << soln[1] << "x" << soln[2] << endl;
+	int res, left, right;
+	tie(res, left, right) = palindrome();
+	cout << endl << "The largest [3]x[3] palindrome is ( " << left << "x" << right <<")=" << res << endl;
 	return 0;
 }

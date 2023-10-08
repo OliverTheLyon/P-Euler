@@ -29,9 +29,9 @@ avg_time_alt() {
 }
 
 #What q's to run
-START_Q=1;
-END_Q=6;
-PERSON="Oliver";
+START_Q=$2;
+END_Q=$3;
+PERSON=$1;
 
 #make files needed
 for i in $(seq $START_Q $END_Q);
